@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const Card = ({ movie }) => {
+const Card = ({ movie, isFavorite }) => {
   const [dataGenres, setDataGenres] = useState();
   useEffect(() => {
     axios
@@ -18,6 +18,15 @@ const Card = ({ movie }) => {
     const [year, month, day] = date.split("-");
     let releaseDate = `${day}/${month}/${year}`;
     return releaseDate;
+  };
+
+  const handleAddFavorite = (movie) => {
+    debugger;
+    console.log(movie);
+    const favoriteMovies =
+      JSON.parse(localStorage.getItem("FavoriteMovies")) || [];
+    favoriteMovies.push(movie);
+    localStorage.setItem("FavoriteMovies", JSON.stringify(favoriteMovies));
   };
 
   return (
@@ -43,7 +52,14 @@ const Card = ({ movie }) => {
       </ul>
       <h3>Synopsis</h3>
       <p>{movie.overview}</p>
-      <input type="submit" value="Ajouter aux coups de coeur" className="btn" />
+      {isFavorite ? null : (
+        <input
+          type="submit"
+          value="Ajouter aux coups de coeur"
+          className="btn"
+          onClick={() => handleAddFavorite(movie)}
+        />
+      )}
     </li>
   );
 };

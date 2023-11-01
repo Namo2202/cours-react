@@ -1,11 +1,26 @@
 .user-list-page {
-  > h2 {
+  >h2 {
     text-align: center;
     font-size: 1.9rem;
     letter-spacing: 1px;
 
     span {
       font-size: 1rem;
+    }
+  }
+
+  .movies {
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    p {
+      text-align: center;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
     }
   }
 }
