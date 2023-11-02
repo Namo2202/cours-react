@@ -10,7 +10,6 @@ const Card = ({ movie, isFavorite }) => {
       )
       .then((res) => {
         setDataGenres(res.data.genres);
-        console.log(res.data.genres);
       });
   }, []);
 
@@ -21,12 +20,24 @@ const Card = ({ movie, isFavorite }) => {
   };
 
   const handleAddFavorite = (movie) => {
-    debugger;
-    console.log(movie);
     const favoriteMovies =
       JSON.parse(localStorage.getItem("FavoriteMovies")) || [];
     favoriteMovies.push(movie);
     localStorage.setItem("FavoriteMovies", JSON.stringify(favoriteMovies));
+  };
+
+  const handleDeleteFavorite = (movie) => {
+    let favoriteMovies =
+      JSON.parse(localStorage.getItem("FavoriteMovies")) || [];
+    for (let i = 0; i < favoriteMovies.length; i++) {
+      const items = favoriteMovies;
+      if (movie.id == favoriteMovies[i].id) {
+        items.splice(i, 1);
+        favoriteMovies = JSON.stringify(items);
+        localStorage.setItem("FavoriteMovies", favoriteMovies);
+        window.location.reload(false);
+      }
+    }
   };
 
   return (
@@ -52,7 +63,14 @@ const Card = ({ movie, isFavorite }) => {
       </ul>
       <h3>Synopsis</h3>
       <p>{movie.overview}</p>
-      {isFavorite ? null : (
+      {isFavorite ? (
+        <input
+          type="submit"
+          value="Supprimer"
+          className="btn"
+          onClick={() => handleDeleteFavorite(movie)}
+        />
+      ) : (
         <input
           type="submit"
           value="Ajouter aux coups de coeur"

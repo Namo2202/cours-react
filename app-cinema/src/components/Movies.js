@@ -16,7 +16,6 @@ const Movies = ({ sortType, searchField }) => {
         )
         .then((res) => {
           setData(res.data.results);
-          console.log(res.data);
         });
     } else {
       axios
@@ -26,7 +25,6 @@ const Movies = ({ sortType, searchField }) => {
         )
         .then((res) => {
           setData(res.data.results);
-          console.log(res.data);
         });
     }
   }, [searchField]);

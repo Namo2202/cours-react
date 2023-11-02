@@ -3,7 +3,6 @@ import Header from "../components/Header";
 import Card from "../components/Card";
 
 const Favorite = () => {
-  debugger;
   const favoriteMovies =
     JSON.parse(localStorage.getItem("FavoriteMovies")) || [];
   return (
