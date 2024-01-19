@@ -46,7 +46,7 @@ const TableLine = ({ coin, index }) => {
           <a
             href={
               "https://www.coingecko.com/fr/pi%C3%A8ces/" +
-              coin.name.toLowerCase().replaceAll(" ", "-")
+              coin.id.toLowerCase()
             }
             target="_blank"
           >

@@ -43,7 +43,7 @@ const CoinChart = ({ coinId, coinName }) => {
         }
         setCoinData(dataArray);
       });
-  }, [duration]);
+  }, [coinId, duration]);
 
   return (
     <div className="coin-chart">
