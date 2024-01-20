@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { addPicture } from "../feature/pictures.slice";
 
-const Form = () => {
+const Form = ({ getPictures }) => {
   const inputArt = useRef();
   const inputYear = useRef();
   const formRef = useRef();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,9 +20,15 @@ const Form = () => {
       )}`,
     };
 
-    axios.post("http://localhost:5000/pictures", data).then(() => {
-      formRef.current.reset();
-    });
+    axios
+      .post("http://localhost:5000/pictures", data)
+      .then(() => {
+        dispatch(addPicture(data));
+        formRef.current.reset();
+      })
+      .then(() => {
+        dispatch(getPictures());
+      });
   };
 
   return (
