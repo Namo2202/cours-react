@@ -14,6 +14,8 @@ const NewPost = () => {
     const data = {
       message,
       author: userId,
+      // Créer un ID provisoir en attendant le retour de la BDD
+      _id: Date.now(),
     };
 
     axios.post("http://localhost:5000/post/", data).then(() => {
