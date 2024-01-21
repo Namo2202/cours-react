@@ -2,11 +2,21 @@ const express = require("express");
 const connectDB = require("./config/db");
 const dotenv = require("dotenv").config();
 const port = 5000;
+const cors = require("cors");
 
 //connexion à mongodb
 connectDB();
 
 const app = express();
+
+// Authorisation CORS
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
 
 // Middleware qui permet de traiter les données de la Request
 app.use(express.json());
