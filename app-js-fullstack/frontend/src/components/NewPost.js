@@ -23,7 +23,6 @@ const NewPost = () => {
       // GetPost car il faut aller chercher l'ID crée par MongoDB
       dispatch(getPosts());
     });
-
     setMessage("");
   };
 
